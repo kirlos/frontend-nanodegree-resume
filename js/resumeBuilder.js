@@ -6,15 +6,19 @@ This is empty on purpose! Your code to build the resume will go here.
    "schools": [
      {
        "name": "Maine Maritime Academy",
-       "city": "Castine, ME, US",
+       "location": "Castine, ME, US",
        "degree": "BS",
-       "major": "Marine Engineering"
+       "majors": ["Marine Engineering"],
+       "dates": "Fall 2005 - Summer 2008",
+       "url": "http://mainemaritime.edu"
      },
      {
        "name": "Florida International University",
-       "city": "Miami, FL, US",
+       "location": "Miami, FL, US",
        "degree": "none",
-       "major": "Computer Science"
+       "majors": ["Computer Science"],
+       "dates": "Fall 1997 - Spring 2004",
+       "url": "http://fiu.edu"
      }
    ],
    "onlineCourses": [
@@ -58,7 +62,8 @@ This is empty on purpose! Your code to build the resume will go here.
      {
        "title": "Vendor Integration Test Lab",
        "dates": "2012",
-       "description": "Assisted in the planning, construction, and managemant of a Vendor Integration Test Lab for the Navy's DDG1000 destroyer"
+       "description": "Assisted in the planning, construction, and managemant of a Vendor Integration Test Lab for the Navy's DDG1000 destroyer",
+       "images": ["images/Future_USS_Zumwalt's_first_underway_at_seaSm.jpg"]
      }
    ]
  };
@@ -93,11 +98,15 @@ work.display  = function(){
 education.display = function(){
     education.schools.forEach(function (school) {
     $("#education").append(HTMLschoolStart);
+
+
     var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
-    var formattedSchoolCity = HTMLschoolLocation.replace("%data%", school.city);
+    var formattedSchoolCity = HTMLschoolLocation.replace("%data%", school.location);
     var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
-    var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.major);
-    $(".education-entry:last").append(formattedSchoolName + formattedSchoolCity + formattedSchoolDegree + formattedSchoolMajor);
+    var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
+    var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
+    var formattedSchoolUrl = HTMLonlineURL.replace("%data%", school.url);
+    $(".education-entry:last").append(formattedSchoolName + formattedSchoolCity + formattedSchoolDegree + formattedSchoolDates + formattedSchoolMajor  + formattedSchoolUrl);
   });
 
   education.onlineCourses.forEach(function (course) {
@@ -117,7 +126,8 @@ projects.display = function () {
     var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
     var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
     var formattedProjectDesc = HTMLprojectDescription.replace("%data%", project.description);
-    $(".project-entry:last").append(formattedProjectTitle + formattedProjectDates + formattedProjectDesc);
+    var formattedProjectImg = HTMLprojectImage.replace("%data%", project.images);
+    $(".project-entry:last").append(formattedProjectTitle + formattedProjectDates + formattedProjectDesc + formattedProjectImg);
   });
 };
 
@@ -141,8 +151,8 @@ bio.display = function() {
   });
 }
 
-$("#mapDiv").append(googleMap);
 bio.display();
 work.display();
 education.display();
 projects.display();
+$("#mapDiv").append(googleMap);
