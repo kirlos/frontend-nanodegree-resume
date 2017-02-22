@@ -125,10 +125,14 @@ a {
 .dark-gray {
   background-color: #4a4a4a;
 }
+.dark-blue{
+  background-color: #043656;
+}
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #043656;
+  /*background-color: #484848;*/
 }
 
 .flex-box {
