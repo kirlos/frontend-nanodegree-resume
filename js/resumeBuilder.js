@@ -90,24 +90,19 @@
  education.display = function() {
      education.schools.forEach(function(school) {
          $("#education").append(HTMLschoolStart);
-
-
-         var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
+         var formattedSchoolName = HTMLschoolName.replace("%data%", school.name).replace('#', school.url);
          var formattedSchoolCity = HTMLschoolLocation.replace("%data%", school.location);
          var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
          var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
          var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
-         var formattedSchoolUrl = HTMLonlineURL.replace("%data%", school.url);
-         $(".education-entry:last").append(formattedSchoolName + formattedSchoolCity + formattedSchoolDegree + formattedSchoolDates + formattedSchoolMajor + formattedSchoolUrl);
+         $(".education-entry:last").append(formattedSchoolName + formattedSchoolCity + formattedSchoolDegree + formattedSchoolDates + formattedSchoolMajor);
      });
-
+     $(".education-entry:last").append(HTMLonlineClasses);
      education.onlineCourses.forEach(function(course) {
-         $(".education-entry:last").append(HTMLonlineClasses);
-         var formattedTitle = HTMLonlineTitle.replace("%data%", course.title);
+         var formattedTitle = HTMLonlineTitle.replace("%data%", course.title).replace('#', course.url);
          var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
          var formattedDates = HTMLonlineDates.replace("%data%", course.dates);
-         var formattedUrl = HTMLonlineURL.replace("%data%", course.url);
-         $(".education-entry:last").append(formattedTitle + formattedSchool + formattedDates + formattedUrl);
+         $(".education-entry:last").append(formattedTitle + formattedSchool + formattedDates);
      });
 
  };
@@ -141,7 +136,6 @@
      $("#header").append(formattedBioPic + formattedWelcome);
      $("#topContacts").append(formattedPhone + formattedEmail + formattedGithub + formattedLocation);
      $("#footerContacts").append(formattedPhone + formattedEmail + formattedGithub + formattedLocation);
-
      $("#header").append(HTMLskillsStart);
      bio.skills.forEach(function(skill) {
          formattedSkill = HTMLskills.replace("%data%", skill);
