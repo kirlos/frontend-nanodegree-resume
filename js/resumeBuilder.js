@@ -68,7 +68,7 @@
          "github": "kirlos",
          "location": "Salt Lake City"
      },
-     "welcomeMessage": "",
+     "welcomeMessage": "Always ready for an adventure!",
      "skills": ["Systems Engineering", "Controls Engineering", "Programmable Logic Controllers", "Integration", "Troubleshooting"],
      "biopic": "images/biopic.jpg"
  };
@@ -119,8 +119,11 @@
          var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
          var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
          var formattedProjectDesc = HTMLprojectDescription.replace("%data%", project.description);
-         var formattedProjectImg = HTMLprojectImage.replace("%data%", project.images);
-         $(".project-entry:last").append(formattedProjectTitle + formattedProjectDates + formattedProjectDesc + formattedProjectImg);
+         $(".project-entry:last").append(formattedProjectTitle + formattedProjectDates + formattedProjectDesc);
+         project.images.forEach(function(image){
+            var formattedProjectImg = HTMLprojectImage.replace("%data%", image);
+            $(".project-entry:last").append(formattedProjectImg);
+         });
      });
  };
 
@@ -129,12 +132,13 @@
      var formattedName = HTMLheaderName.replace("%data%", bio.name);
      var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
      $("#header").prepend(formattedName + formattedRole);
+     var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
      var formattedPhone = HTMLmobile.replace("%data%", bio.contacts.mobile);
      var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
      var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
      var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
      var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
-     $("#header").append(formattedBioPic);
+     $("#header").append(formattedBioPic + formattedWelcome);
      $("#topContacts").append(formattedPhone + formattedEmail + formattedGithub + formattedLocation);
      $("#footerContacts").append(formattedPhone + formattedEmail + formattedGithub + formattedLocation);
 
